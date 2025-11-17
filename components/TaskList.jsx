@@ -1,17 +1,29 @@
 import React, { useState } from "react";
-import { TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
+import { Pressable, TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const DATA = [];
 
 
-const Item = ({ title, onDelete}) => (
-  <View>
-    <Text>{title}</Text>
-    <Button title="Delete" onPress={onDelete} />
+const Item = ({ title, onDelete }) => (
+  <View className="bg-[#E49BA6] mx-3 mb-3 flex-row items-center justify-between p-3 rounded-xl">
+    <View className="flex-1">
+      <BouncyCheckbox
+        text={title}
+        fillColor="#92487A"
+        textStyle={{ color: "#540863", fontWeight: "600" }}
+        onPress={() => {}}
+      />
+    </View>
+    <Pressable 
+      onPress={onDelete} 
+      className="">
+        <MaterialIcons name="delete" size={25} color="#540863" />
+    </Pressable>
   </View>
 );
-
 
 export function TaskList (){
   const [tasks, setTask] = useState(DATA);
@@ -35,43 +47,45 @@ export function TaskList (){
     setTask(newTasks);
   }
 
+  const handleClearAll = () => {
+    setTask([]);
+  }
+
   return(
-    <View style={styles.card}>
-      <FlatList
+    <View className="mt-3"> 
+      <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863]" onPress={handleClearAll}>
+        <Text className='text-white'>Clear All</Text>
+      </Pressable>
+     <FlatList
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => 
-        <Item title={item.title} 
+        <Item className="bg-[#E49BA6]" title={item.title} 
         onDelete={() => handleDeleteTask(item.id)}
-        style={styles.card} /> }
+        /> }
       />
       {showInput ? (
-        <View>
+        <View className="">
           <TextInput 
             onChangeText={setValue}
             placeholder="Enter new task"
+            className="text-[#540863] font-bold mx-3 p-3 mb-3 rounded-xl bg-[#E49BA6]"
           />
-          <Button title="submit task" onPress={handleSubmit} />
+          <Pressable className="items-center rounded-xl mx-3 py-3 bg-[#540863]" title="submit task" onPress={handleSubmit}>
+            <Text className="text-white text-1xl">Submit</Text>
+          </Pressable>
         </View>
       ) : (
-        <View>
-          <Button title="Add task" onPress={handleAddButton} />
+        <View className="rounded-xl">
+          <Pressable className="items-center rounded-xl mx-3 bg-[#540863]" title="add task" onPress={handleAddButton}>
+              <MaterialIcons name="add" size={24} color="white" />
+          </Pressable>
         </View>
       )
       }
-    </View>
+   </View>
   );
 
 }
 
 
-
-const styles = StyleSheet.create({
-  card:{
-    padding: 12,
-    backgroundColor: 'yellow',
-  },
-  task: {
-    backgroundColor: 'red',
-  },
-})
