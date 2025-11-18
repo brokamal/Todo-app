@@ -19,7 +19,7 @@ const Item = ({ title, onDelete }) => (
     </View>
     <Pressable 
       onPress={onDelete} 
-      className="">
+      className="active:scale-125">
         <MaterialIcons name="delete" size={25} color="#540863" />
     </Pressable>
   </View>
@@ -53,7 +53,7 @@ export function TaskList (){
 
   return(
     <View className="mt-3"> 
-      <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863]" onPress={handleClearAll}>
+      <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863] active:bg-[#6a0c80]" onPress={handleClearAll}>
         <Text className='text-white'>Clear All</Text>
       </Pressable>
      <FlatList
@@ -71,16 +71,19 @@ export function TaskList (){
             placeholder="Enter new task"
             className="text-[#540863] font-bold mx-3 p-3 mb-3 rounded-xl bg-[#E49BA6]"
           />
-          <Pressable className="items-center rounded-xl mx-3 py-3 bg-[#540863]" title="submit task" onPress={handleSubmit}>
+          <Pressable className="items-center rounded-xl mx-3 py-3 bg-[#540863] active:bg-[#6a0c80]" title="submit task" onPress={handleSubmit}>
             <Text className="text-white text-1xl">Submit</Text>
           </Pressable>
         </View>
       ) : (
         <View className="rounded-xl">
-          <Pressable className="items-center rounded-xl mx-3 bg-[#540863]" title="add task" onPress={handleAddButton}>
-              <MaterialIcons name="add" size={24} color="white" />
-          </Pressable>
-        </View>
+      <Pressable
+        onPress={handleAddButton}
+        className="py-3 items-center rounded-xl mx-3 bg-[#540863] active:bg-[#6a0c80]"
+      >
+        <MaterialIcons name="add" size={22} color="white" />
+      </Pressable>
+          </View>
       )
       }
    </View>
