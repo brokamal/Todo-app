@@ -5,7 +5,7 @@ import { TaskList } from '../components/TaskList'
 import "../global.css"
 
 
-export default function Todo() {
+export default function Home() {
 
   return (
     <View style={{flex: 1, backgroundColor: "#FFD3D5"}}>

@@ -33,9 +33,9 @@ export function TaskList (){
   const handleAddButton = () => {
     setShowInput(true);
   }
-  
+
   const handleSubmit = () => {
-    if(value === "") return;
+    if(value.trim() === "") return;
     const newTask = {id: tasks.length + 1, title: value};
     setTask([...tasks, newTask]);
     setValue("");
