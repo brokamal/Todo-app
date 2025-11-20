@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Pressable, TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
-
+import AsyncStorage, { createAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const DATA = [];
-
+const STORAGE_KEY = "TASKS_STORAGE";
 
 const Item = ({ title, onDelete }) => (
   <View className="bg-[#E49BA6] mx-3 mb-3 flex-row items-center justify-between p-3 rounded-xl">
@@ -30,14 +30,44 @@ export function TaskList (){
   const [value, setValue] = useState("");
   const [showInput, setShowInput] = useState(false);
 
+  const loadTasks = async () => {
+    try{ 
+      const storedTasks = await AsyncStorage.getItem(STORAGE_KEY);
+      if (storedTasks) setTask(JSON.parse(storedTasks));
+    }catch (error){
+        console.log("Error loading tasks", error);
+    }
+  }
+
+  const saveTasks = async (taskToSave) => {
+    try{
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(taskToSave));
+    }
+    catch(error){
+      console.log("Errror saving tasks", error);
+    }
+  };
+
+
+  useEffect(() => {
+    loadTasks();
+ }, []);
+ 
+  useEffect(() => {
+    saveTasks(tasks);
+ }, [tasks]);
+  
+
+
   const handleAddButton = () => {
     setShowInput(true);
   }
 
   const handleSubmit = () => {
     if(value.trim() === "") return;
-    const newTask = {id: tasks.length + 1, title: value};
-    setTask([...tasks, newTask]);
+    const newTask = { id: Date.now().toString(), title: value };    
+    const updatedTasks = [...tasks, newTask];
+    setTask(updatedTasks);
     setValue("");
     setShowInput(false);
   }
