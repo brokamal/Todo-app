@@ -48,7 +48,6 @@ export function TaskList (){
     }
   };
 
-
   useEffect(() => {
     loadTasks();
  }, []);
@@ -56,8 +55,6 @@ export function TaskList (){
   useEffect(() => {
     saveTasks(tasks);
  }, [tasks]);
-  
-
 
   const handleAddButton = () => {
     setShowInput(true);
@@ -81,11 +78,13 @@ export function TaskList (){
     setTask([]);
   }
 
+
   return(
     <View className="mt-3"> 
       <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863] active:bg-[#6a0c80]" onPress={handleClearAll}>
         <Text className='text-white'>Clear All</Text>
       </Pressable>
+      {/* Change to ScrolLView instead of FLatList */}
      <FlatList
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
@@ -118,7 +117,6 @@ export function TaskList (){
       }
    </View>
   );
-
 }
 
 
