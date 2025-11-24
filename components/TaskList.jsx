@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Pressable, TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
+import { Pressable, ScrollView, TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage, { createAsyncStorage } from '@react-native-async-storage/async-storage';
@@ -85,7 +85,7 @@ export function TaskList (){
         <Text className='text-white'>Clear All</Text>
       </Pressable>
       {/* Change to ScrolLView instead of FLatList */}
-     <FlatList
+     <ScrollView
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => 
