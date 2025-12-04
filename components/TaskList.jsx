@@ -7,8 +7,8 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage, { createAsyncStorage } from '@react-native-async-storage/async-storage';
 import { KeyboardAvoidingView, KeyboardProvider } from 'react-native-keyboard-controller';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DATA = [];
 const STORAGE_KEY = "TASKS_STORAGE";
