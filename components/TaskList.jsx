@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Pressable, ScrollView, TextInput, Button, StyleSheet, Text, View, FlatList } from 'react-native';
+import { Platform, Pressable, 
+   ScrollView, TextInput,
+  Button, StyleSheet, Text, 
+  View, FlatList } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage, { createAsyncStorage } from '@react-native-async-storage/async-storage';
+import { KeyboardAvoidingView, KeyboardProvider } from 'react-native-keyboard-controller';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const DATA = [];
 const STORAGE_KEY = "TASKS_STORAGE";
@@ -26,6 +32,7 @@ const Item = ({ title, onDelete }) => (
 );
 
 export function TaskList (){
+
   const [tasks, setTask] = useState(DATA);
   const [value, setValue] = useState("");
   const [showInput, setShowInput] = useState(false);
@@ -80,20 +87,28 @@ export function TaskList (){
 
 
   return(
-    <View className="mt-3"> 
+    <KeyboardProvider>
+      <SafeAreaView className='flex-1'>
+    <KeyboardAvoidingView
+      behaviour={"translate-with-padding"}
+      keyboardVerticalOffset={10}
+      className="flex-1"
+    >
+   <View className="mt-3"> 
       <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863] active:bg-[#6a0c80]" onPress={handleClearAll}>
         <Text className='text-white'>Clear All</Text>
       </Pressable>
-      {/* Change to ScrolLView instead of FLatList */}
-     <ScrollView
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => 
-        <Item className="bg-[#E49BA6]" title={item.title} 
-        onDelete={() => handleDeleteTask(item.id)}
-        /> }
-      />
-      {showInput ? (
+      <ScrollView>
+        {tasks.map((item) => (
+          <Item
+            key={item.id}
+            className="bg-[#E49BA6]"
+            title={item.title}
+            onDelete={() => handleDeleteTask(item.id)}
+          />
+        ))}
+      </ScrollView>   
+          {showInput ? (
         <View className="">
           <TextInput 
             onChangeText={setValue}
@@ -116,6 +131,9 @@ export function TaskList (){
       )
       }
    </View>
+   </KeyboardAvoidingView>
+   </SafeAreaView>
+   </KeyboardProvider>
   );
 }
 
