@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Platform, 
+import { 
+  Platform, 
   Modal,
   Pressable, 
   KeyboardAvoidingView, 
@@ -27,16 +28,9 @@ export function AddTask(){
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
-      }}
-    > 
-
-      <View>
-        <Text>
-          bich nga
-        </Text>
-      </View>
-    </Modal>
-    
+      }}> 
+        <TextInput/>
+   </Modal>
     <Pressable
       onPress={() => setModalVisible(true)}>
       <Text>

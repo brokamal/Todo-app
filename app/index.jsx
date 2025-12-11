@@ -10,9 +10,7 @@ export default function Home() {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "#FFD3D5"}}>
-      <View style={{flex: 1, backgroundColor: "#FFD3D5"}}>
         <TaskList />
-      </View>
     </SafeAreaView>
   );
 };
