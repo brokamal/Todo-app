@@ -28,8 +28,9 @@ const Item = ({ title, onDelete, onEdit }) => (
     <Pressable
       onPress={onEdit}
       title="edit"
+      className="mx-2"
     >
-      <Text>Edit</Text>
+      <MaterialIcons name="edit" size={25} color="#540863"/>
     </Pressable>
     <Pressable 
       onPress={onDelete} 
@@ -129,7 +130,6 @@ export function TaskList (){
       <Pressable className="max-w-24 items-center rounded-xl mx-3 p-3 mb-3 bg-[#540863] active:bg-[#6a0c80]" onPress={handleClearAll}>
         <Text className='text-white'>Clear All</Text>
           </Pressable>
-      {/* add modal screen for confirmation when clear all*/}
       <FlatList
         data={tasks}
         keyExtractor={(item) => item.id} 
@@ -145,9 +145,9 @@ export function TaskList (){
         <View className="items-end">
           <Pressable
           onPress={handleAddButton}
-          className="py-3 min-w-14 min-h-12 items-center rounded-2xl mx-3 mb-3 bg-[#540863] active:bg-[#6a0c80]"
+          className="py-3 min-w-16 min-h-16 items-center rounded-2xl mx-3 mb-3 bg-[#540863] active:bg-[#6a0c80]"
         >
-          <MaterialIcons name="add" size={22} color="white" />
+          <MaterialIcons name="add" size={22} color="white"  className="mt-2"/>
         </Pressable>
       </View>
         <Modal 
@@ -156,19 +156,19 @@ export function TaskList (){
           visible={modalVisible}
           onRequestClose={handleCloseModal}>
          <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="bg-[#FDF2F4] w-[90%] p-6 rounded-2xl shadow-xl border border-[#540863]">
+          <View className="bg-[#FDF2F4]  p-6 rounded-2xl shadow-xl border border-[#540863]">
            <TextInput 
             value={value}
             onChangeText={setValue}
             placeholder="Enter new task"
             className="text-[#540863] font-bold mx-3 p-3 mb-3 rounded-xl bg-[#E49BA6]"
           />
-            <View className="flex-row">
-          <Pressable className="items-center rounded-xl mx-3 py-3 bg-[#540863] active:bg-[#6a0c80]" title="submit task" onPress={handleSubmit}>
+            <View className="flex-row justify-center">
+          <Pressable className="items-center rounded-xl min-w-40 mx-3 py-3 bg-[#540863] active:bg-[#6a0c80]" title="submit task" onPress={handleSubmit}>
             <Text className="text-white text-1xl">Submit</Text>
           </Pressable>
       
-              <Pressable className="items-center rounded-xl mx-3 py-3 bg-[#540863] active:bg-[#6a0c80]" title="" onPress={handleCloseModal}>
+              <Pressable className="items-center rounded-xl mx-3 min-w-40 py-3 bg-[#540863] active:bg-[#6a0c80]" title="" onPress={handleCloseModal}>
             <Text className="text-white text-1xl">Cancel</Text>
           </Pressable>
             </View>

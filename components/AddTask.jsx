@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { 
-  Platform, 
   Modal,
   Pressable, 
-  KeyboardAvoidingView, 
-  ScrollView,
   TextInput, 
-  Button, 
-  StyleSheet, 
   Text, 
-  View, 
-  FlatList } from 'react-native';
+  View,   } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage, { createAsyncStorage } from '@react-native-async-storage/async-storage';
