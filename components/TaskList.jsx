@@ -164,11 +164,11 @@ export function TaskList (){
             className="text-[#540863] font-bold mx-3 p-3 mb-3 rounded-xl bg-[#E49BA6]"
           />
             <View className="flex-row justify-center">
-          <Pressable className="items-center rounded-xl min-w-40 mx-3 py-3 bg-cyan-400 active:bg-[#6a0c80]" title="submit task" onPress={handleSubmit}>
+          <Pressable className="items-center rounded-xl min-w-40 mx-3 py-3 bg-cyan-800 active:bg-[#6a0c80]" title="submit task" onPress={handleSubmit}>
             <Text className="text-white text-1xl">Submit</Text>
           </Pressable>
       
-              <Pressable className="items-center rounded-xl mx-3 min-w-40 py-3 bg-gray-200 active:bg-[#6a0c80]" title="" onPress={handleCloseModal}>
+              <Pressable className="items-center rounded-xl mx-3 min-w-40 py-3 bg-gray-500 active:bg-[#6a0c80]" title="" onPress={handleCloseModal}>
             <Text className="text-red-700 text-1xl">Cancel</Text>
           </Pressable>
             </View>
